@@ -29,17 +29,22 @@ public class MainActivity extends AppCompatActivity {
 
     public void delete(View view) {
         DaoSession daoSession = MyApplication.getInstance().getDaoSession();
-
+        daoSession.delete(new UserBean("william", "110", "12"));
+        query(view);
     }
 
     public void update(View view) {
         DaoSession daoSession = MyApplication.getInstance().getDaoSession();
-
+        daoSession.update(new UserBean("william111", "110", "12"));
     }
 
     public void query(View view) {
         DaoSession daoSession = MyApplication.getInstance().getDaoSession();
         UserBean load = daoSession.load(UserBean.class, "12");
-        Log.d(TAG, "query id = 12, name: " + load.getUserName());
+        if (load != null) {
+            Log.d(TAG, "query id = 12, name: " + load.getUserName());
+        } else {
+            Log.d(TAG, "no query result");
+        }
     }
 }
