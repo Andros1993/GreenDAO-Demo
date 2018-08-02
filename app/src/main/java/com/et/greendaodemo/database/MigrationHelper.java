@@ -19,10 +19,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Created by Simon on 12/8/2017.
- */
-
 public final class MigrationHelper {
 
     public static boolean DEBUG = false;

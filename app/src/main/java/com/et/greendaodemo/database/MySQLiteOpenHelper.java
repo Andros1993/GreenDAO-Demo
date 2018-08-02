@@ -5,10 +5,6 @@ import android.database.sqlite.SQLiteDatabase;
 
 import org.greenrobot.greendao.database.Database;
 
-/**
- * Created by Simon on 12/8/2017.
- */
-
 public class MySQLiteOpenHelper extends DaoMaster.OpenHelper {
 
     public MySQLiteOpenHelper(Context context, String name) {
@@ -32,7 +28,7 @@ public class MySQLiteOpenHelper extends DaoMaster.OpenHelper {
                 public void onDropAllTables(Database db, boolean ifExists) {
                     DaoMaster.dropAllTables(db, ifExists);
                 }
-            }, UserBeanDao.class);
+            }, UserBeanDao.class, KeyBeanDao.class);
         }
     }
 }

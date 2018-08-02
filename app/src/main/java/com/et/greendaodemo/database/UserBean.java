@@ -22,11 +22,16 @@ public class UserBean {
     @Property(nameInDb = "USERID")
     private String userId;
 
-    @Generated(hash = 1586031579)
-    public UserBean(String userName, String userBalance, String userId) {
+    @Property(nameInDb = "UPDATEID")
+    private String updateId;
+
+    @Generated(hash = 753973164)
+    public UserBean(String userName, String userBalance, String userId,
+            String updateId) {
         this.userName = userName;
         this.userBalance = userBalance;
         this.userId = userId;
+        this.updateId = updateId;
     }
 
     public UserBean(){
@@ -54,5 +59,13 @@ public class UserBean {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public String getUpdateId() {
+        return this.updateId;
+    }
+
+    public void setUpdateId(String updateId) {
+        this.updateId = updateId;
     }
 }

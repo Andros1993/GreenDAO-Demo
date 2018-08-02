@@ -25,6 +25,7 @@ public class UserBeanDao extends AbstractDao<UserBean, String> {
         public final static Property UserName = new Property(0, String.class, "userName", false, "USERNAME");
         public final static Property UserBalance = new Property(1, String.class, "userBalance", false, "USERBALANCE");
         public final static Property UserId = new Property(2, String.class, "userId", true, "USERID");
+        public final static Property UpdateId = new Property(3, String.class, "updateId", false, "UPDATEID");
     }
 
 
@@ -42,7 +43,8 @@ public class UserBeanDao extends AbstractDao<UserBean, String> {
         db.execSQL("CREATE TABLE " + constraint + "\"USER_BEAN\" (" + //
                 "\"USERNAME\" TEXT," + // 0: userName
                 "\"USERBALANCE\" TEXT," + // 1: userBalance
-                "\"USERID\" TEXT PRIMARY KEY NOT NULL );"); // 2: userId
+                "\"USERID\" TEXT PRIMARY KEY NOT NULL ," + // 2: userId
+                "\"UPDATEID\" TEXT);"); // 3: updateId
     }
 
     /** Drops the underlying database table. */
@@ -69,6 +71,11 @@ public class UserBeanDao extends AbstractDao<UserBean, String> {
         if (userId != null) {
             stmt.bindString(3, userId);
         }
+ 
+        String updateId = entity.getUpdateId();
+        if (updateId != null) {
+            stmt.bindString(4, updateId);
+        }
     }
 
     @Override
@@ -89,6 +96,11 @@ public class UserBeanDao extends AbstractDao<UserBean, String> {
         if (userId != null) {
             stmt.bindString(3, userId);
         }
+ 
+        String updateId = entity.getUpdateId();
+        if (updateId != null) {
+            stmt.bindString(4, updateId);
+        }
     }
 
     @Override
@@ -101,7 +113,8 @@ public class UserBeanDao extends AbstractDao<UserBean, String> {
         UserBean entity = new UserBean( //
             cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0), // userName
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // userBalance
-            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2) // userId
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // userId
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3) // updateId
         );
         return entity;
     }
@@ -111,6 +124,7 @@ public class UserBeanDao extends AbstractDao<UserBean, String> {
         entity.setUserName(cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0));
         entity.setUserBalance(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
         entity.setUserId(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
+        entity.setUpdateId(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
      }
     
     @Override
